@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     console.log("Email:", email);
     console.log("Password:", password);
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (
@@ -42,7 +42,7 @@ export default function Login() {
               <path d="m15 18-6-6 6-6" />
             </svg>
           </Button>
-          
+
           <CardHeader className="space-y-1 text-center pt-12">
             <CardTitle className="text-4xl text-center text-black font-semibold ">
               Entrar
@@ -81,7 +81,11 @@ export default function Login() {
               </div>
 
               <div className="flex justify-end">
-                <a href="#" className="text-xs text-gray-500  underline" onClick={() => alert("Funcionalidade não implementada")}>
+                <a
+                  href="#"
+                  className="text-xs text-gray-500  underline"
+                  onClick={() => alert("Funcionalidade não implementada")}
+                >
                   Esqueceu a senha?
                 </a>
               </div>
@@ -89,6 +93,7 @@ export default function Login() {
               <Button
                 type="submit"
                 className="w-full bg-purple-800 hover:bg-purple-900 h-12 "
+                
               >
                 Entrar
               </Button>

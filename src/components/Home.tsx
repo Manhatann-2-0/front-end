@@ -20,13 +20,7 @@ export default function Home() {
           >
             Acesse sua conta
           </Button>
-          <Button
-            onClick={() => navigate("/dashboard")}
-            variant="outline"
-            className="border-purple-700 text-purple-700 hover:bg-purple-50 text-xl font-semibold px-8 py-3"
-          >
-            Ver Dashboard
-          </Button>
+          
         </div>
       </div>
     </div>

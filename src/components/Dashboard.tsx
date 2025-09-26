@@ -70,7 +70,6 @@ const recentOrders = [
 export default function Dashboard() {
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-purple-800">Dashboard</h1>
@@ -81,9 +80,7 @@ export default function Dashboard() {
             <BarChart3 className="h-4 w-4 mr-2" />
             Exportar
           </Button>
-          <Button className="bg-purple-800 hover:bg-purple-900">
-            Novo Pedido
-          </Button>
+          
         </div>
       </div>
 

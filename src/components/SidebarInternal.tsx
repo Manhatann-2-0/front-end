@@ -26,8 +26,8 @@ import { useNavigate } from "react-router-dom";
 
 const mockUser = {
   name: "Daniela Pool Rojas",
-  displayName: "", 
-  initials: "", 
+  displayName: "",
+  initials: "",
 };
 
 // Gera nome e iniciais usando apenas os 2 primeiros nomes
@@ -46,7 +46,7 @@ const dashItens = [
 const manageItems = [
   {
     title: "Funcionários",
-    url: "/",
+    url: "/employees",
     icon: Users,
   },
 
@@ -75,7 +75,6 @@ const orderItems = [
     icon: Truck,
   },
 ];
-
 
 export default function SidebarInternal() {
   const navigate = useNavigate();
@@ -179,8 +178,6 @@ export default function SidebarInternal() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
-     
       </SidebarContent>
 
       <SidebarFooter className="border-t border-purple-200 p-4">
