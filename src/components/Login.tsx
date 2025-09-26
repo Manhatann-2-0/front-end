@@ -18,10 +18,8 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Lógica de autenticação aqui
     console.log("Email:", email);
     console.log("Password:", password);
-    // Após autenticação bem-sucedida, redirecionar para a página inicial (para testes apenas)
     navigate("/");
   };
 
