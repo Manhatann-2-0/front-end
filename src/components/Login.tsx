@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Label } from "@radix-ui/react-label";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import Header from "./Header";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -24,78 +18,84 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-amber-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md border-purple-600">
-        <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl text-center text-purple-700">
-            Faça o seu login
-          </CardTitle>
-          <CardDescription className="text-purple-700 text-1xl">
-            Digite suas credenciais para acessar sua conta
-          </CardDescription>
-        </CardHeader>
+    <>
+      <Header />
 
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-purple-600 font-medium">
-                Email
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="seu@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="border-purple-600 focus:ring-purple-600 focus:border-purple-600"
-              ></Input>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-purple-600 font-medium">
-                Senha
-              </Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Digite sua senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="border-purple-600 focus:ring-purple-600 focus:border-purple-600"
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700"
+      <div className="min-h-screen bg-white flex items-center justify-center p-4">
+        <Card className="w-full max-w-md border-none relative">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => navigate("/")}
+            className="absolute top-4 left-4 p-2 hover:bg-gray-200 rounded-full"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </Button>
+          
+          <CardHeader className="space-y-1 text-center pt-12">
+            <CardTitle className="text-4xl text-center text-black font-semibold ">
               Entrar
-            </Button>
-          </form>
+            </CardTitle>
+          </CardHeader>
 
-          <div className="mt-6 text-center space-y-2">
-            <div>
-              <a
-                href="#"
-                className="text-sm text-purple-600 hover:text-purple-700 underline"
-              >
-                Esqueceu sua senha?
-              </a>
-            </div>
-            <div>
+          <CardContent>
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 flex flex-col gap-4"
+            >
+              <div>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Digite seu email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="border-transparent focus:border-purple-600 focus:ring-0 h-12 rounded-sm placeholder:text-purple-800"
+                  style={{ backgroundColor: "#F0EFFF" }}
+                ></Input>
+              </div>
+
+              <div>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Digite sua senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="border-transparent focus:border-purple-600 focus:ring-0 h-12 rounded-sm placeholder:text-purple-800"
+                  style={{ backgroundColor: "#F0EFFF" }}
+                />
+              </div>
+
+              <div className="flex justify-end">
+                <a href="#" className="text-xs text-gray-500  underline" onClick={() => alert("Funcionalidade não implementada")}>
+                  Esqueceu a senha?
+                </a>
+              </div>
+
               <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate("/")}
-                className="text-purple-600 hover:text-purple-700 underline"
+                type="submit"
+                className="w-full bg-purple-800 hover:bg-purple-900 h-12 "
               >
-                Voltar para a página inicial
+                Entrar
               </Button>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    </>
   );
 }
