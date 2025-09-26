@@ -1,10 +1,10 @@
 import { SidebarLayout } from "@/components/SidebarInternal";
-import Employee from "@/components/Employee";
+import Balcao from "@/components/Balcao";
 
-export default function EmployeesPage() {
+export default function BalcaoPage() {
   return (
     <SidebarLayout>
-      <Employee />
+      <Balcao />
     </SidebarLayout>
   );
 }

@@ -53,7 +53,6 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
-// Tipos para funcionários
 interface Employee {
   id: string;
   name: string;
@@ -64,7 +63,6 @@ interface Employee {
   status: "active" | "inactive";
 }
 
-// Dados mockados
 const mockEmployees: Employee[] = [
   {
     id: "1",
@@ -137,11 +135,10 @@ const getPositionColor = (position: string) => {
   return colors[position as keyof typeof colors] || "bg-gray-100 text-gray-800";
 };
 
-export default function EmployeeManagement() {
+export default function Employee() {
   const [employees, setEmployees] = useState<Employee[]>(mockEmployees);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Dialog states
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [addDialogOpen, setAddDialogOpen] = useState(false);
@@ -149,9 +146,7 @@ export default function EmployeeManagement() {
     null
   );
 
-  // Edit form state
   const [editForm, setEditForm] = useState<Partial<Employee>>({});
-  // Add form state
   const [addForm, setAddForm] = useState<Partial<Employee>>({
     status: "active",
   });
@@ -227,7 +222,6 @@ export default function EmployeeManagement() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-purple-800">
@@ -244,7 +238,7 @@ export default function EmployeeManagement() {
         </Button>
       </div>
 
-      {/* Stats Cards */}
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -289,7 +283,6 @@ export default function EmployeeManagement() {
         </Card>
       </div>
 
-      {/* Search and Table */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -416,7 +409,6 @@ export default function EmployeeManagement() {
         </CardContent>
       </Card>
 
-      {/* Summary */}
       {filteredEmployees.length > 0 && (
         <div className="text-sm text-gray-500 text-center">
           Mostrando {filteredEmployees.length} de {employees.length}{" "}
@@ -424,7 +416,6 @@ export default function EmployeeManagement() {
         </div>
       )}
 
-      {/* Delete Confirmation Dialog */}
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
@@ -459,7 +450,6 @@ export default function EmployeeManagement() {
         </DialogContent>
       </Dialog>
 
-      {/* Edit Employee Dialog */}
       <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
@@ -574,7 +564,6 @@ export default function EmployeeManagement() {
         </DialogContent>
       </Dialog>
 
-      {/* Add Employee Dialog */}
       <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>

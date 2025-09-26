@@ -7,10 +7,10 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
+  useSidebar,
 } from "./ui/sidebar";
 import {
   Users,
@@ -30,7 +30,6 @@ const mockUser = {
   initials: "",
 };
 
-// Gera nome e iniciais usando apenas os 2 primeiros nomes
 const nameArray = mockUser.name.split(" ").slice(0, 2);
 mockUser.displayName = nameArray.join(" ");
 mockUser.initials = nameArray.map((n) => n[0]).join("");
@@ -66,7 +65,7 @@ const manageItems = [
 const orderItems = [
   {
     title: "Balcão",
-    url: "/",
+    url: "/balcao",
     icon: Store,
   },
   {
@@ -78,20 +77,30 @@ const orderItems = [
 
 export default function SidebarInternal() {
   const navigate = useNavigate();
+  const { isMobile, setOpenMobile, setOpen } = useSidebar();
+
+  const handleNavigation = (url: string) => {
+    console.log('Navegando para:', url);
+    
+    if (isMobile) {
+      setOpenMobile(false);
+    } else {
+      setOpen(false);
+    }
+    
+    navigate(url);
+  };
 
   const handleLogout = () => {
-    // Limpar localStorage/sessionStorage
     localStorage.clear();
     sessionStorage.clear();
 
-    // Limpar cookies se necessário
     document.cookie.split(";").forEach((c) => {
       document.cookie = c
         .replace(/^ +/, "")
         .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
 
-    // Redirecionar para a página inicial
     navigate("/");
   };
 
@@ -118,15 +127,13 @@ export default function SidebarInternal() {
             <SidebarMenu>
               {dashItens.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    className="hover:bg-purple-50 hover:text-purple-800 data-[active=true]:bg-purple-100 data-[active=true]:text-purple-800"
+                  <button
+                    onClick={() => handleNavigation(item.url)}
+                    className="w-full flex items-center gap-2 rounded-md px-2 py-2 text-left text-sm font-medium transition-colors hover:bg-purple-50 hover:text-purple-800 data-[active=true]:bg-purple-100 data-[active=true]:text-purple-800"
                   >
-                    <a href={item.url}>
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.title}</span>
+                  </button>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -141,15 +148,13 @@ export default function SidebarInternal() {
             <SidebarMenu>
               {orderItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    className="hover:bg-purple-50 hover:text-purple-800 data-[active=true]:bg-purple-100 data-[active=true]:text-purple-800"
+                  <button
+                    onClick={() => handleNavigation(item.url)}
+                    className="w-full flex items-center gap-2 rounded-md px-2 py-2 text-left text-sm font-medium transition-colors hover:bg-purple-50 hover:text-purple-800 data-[active=true]:bg-purple-100 data-[active=true]:text-purple-800"
                   >
-                    <a href={item.url}>
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.title}</span>
+                  </button>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -164,15 +169,13 @@ export default function SidebarInternal() {
             <SidebarMenu>
               {manageItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    className="hover:bg-purple-50 hover:text-purple-800 data-[active=true]:bg-purple-100 data-[active=true]:text-purple-800"
+                  <button
+                    onClick={() => handleNavigation(item.url)}
+                    className="w-full flex items-center gap-2 rounded-md px-2 py-2 text-left text-sm font-medium transition-colors hover:bg-purple-50 hover:text-purple-800 data-[active=true]:bg-purple-100 data-[active=true]:text-purple-800"
                   >
-                    <a href={item.url}>
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+                    <item.icon className="h-4 w-4" />
+                    <span>{item.title}</span>
+                  </button>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -208,7 +211,6 @@ export default function SidebarInternal() {
   );
 }
 
-// Componente wrapper para usar a sidebar
 export function SidebarLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
