@@ -12,13 +12,22 @@ export default function Home() {
         <p className="text-purple-700 text-4xl font-semibold">
           Junte-se a nós e mude o futuro do seu negócio 🛒
         </p>
-        <Button
-          onClick={() => navigate("/login")}
-          variant="default"
-          className="bg-purple-700 text-2xl text-white hover:bg-purple-800 font-semibold w-100"
-        >
-          Acesse sua conta
-        </Button>
+        <div className="flex gap-4 justify-center">
+          <Button
+            onClick={() => navigate("/login")}
+            variant="default"
+            className="bg-purple-700 text-xl text-white hover:bg-purple-800 font-semibold px-8 py-3"
+          >
+            Acesse sua conta
+          </Button>
+          <Button
+            onClick={() => navigate("/dashboard")}
+            variant="outline"
+            className="border-purple-700 text-purple-700 hover:bg-purple-50 text-xl font-semibold px-8 py-3"
+          >
+            Ver Dashboard
+          </Button>
+        </div>
       </div>
     </div>
   );
