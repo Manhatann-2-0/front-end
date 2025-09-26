@@ -14,8 +14,8 @@ export default function Home() {
         </p>
         <Button
           onClick={() => navigate("/login")}
-          variant="outline"
-          className="bg-purple-500 text-2xl text-white hover:border-purple-700 hover:bg-white hover:text-purple-600"
+          variant="default"
+          className="bg-purple-500 text-2xl text-white hover:bg-purple-700"
         >
           Acesse sua conta
         </Button>
