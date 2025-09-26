@@ -80,14 +80,14 @@ export default function SidebarInternal() {
   const { isMobile, setOpenMobile, setOpen } = useSidebar();
 
   const handleNavigation = (url: string) => {
-    console.log('Navegando para:', url);
-    
+    console.log("Navegando para:", url);
+
     if (isMobile) {
       setOpenMobile(false);
     } else {
       setOpen(false);
     }
-    
+
     navigate(url);
   };
 
